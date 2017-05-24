@@ -38,12 +38,15 @@
 	     
 	     <h:commandButton value="Entrar" action="login.xhtml" class="btn btn-lg btn-primary btn-block"/><br/>
 	     
-	     <h:commandLink value="Ainda não cadastrado?" action="registrar_paciente.xhtml"/><br/>
-	     <h:commandLink value="Deseja se voluntariar?" action="registrar_medico.xhtml"/><br/>
+	     <div>
+	     	<h:commandLink value="Ainda não cadastrado?"
+	     		action="registrar_paciente.xhtml" /><br/>
+	     </div>
+	    
 	</h:form>
 	</div>
 	</div>
-
+	<br /><div><h:messages class="alert alert-success"/></div>
 </div>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+	<title>Registrar Meu SocialDoc</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/registrar.css"/>
+</h:head>
+<h:body>
+
+<div class="container">
+<div class="row main">
+	<div class="page-header">
+		<h1>Registre-se</h1>
+	</div>
+	<div class="jumbotron">
+		<div><h:messages class="alert alert-danger"/></div>
+		<h:form class="form-horizontal">
+
+			<label>Dados do Usuario</label>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<h:inputText value="#{cadastroPacienteBean.paciente.nome}" class="form-control" name="name" id="name"  p:placeholder="Nome Completo"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"> @ </span>
+					<h:inputText value="#{cadastroPacienteBean.paciente.usuario}" class="form-control" name="email" id="email"  p:placeholder="Endereço de Email"/>
+				</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<h:inputSecret value="#{cadastroPacienteBean.paciente.password}" class="form-control" name="password" id="password"  p:placeholder="Senha"/>
+				</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<h:inputSecret value="#{cadastroPacienteBean.confirmPass}" class="form-control" name="confirm" id="confirm"  p:placeholder="Confirmar Senha"/>
+				</div>
+				</div>
+			</div>
+
+			<div class="cols-sm-10">
+				<hr />
+				<label>Dados Pessoais</label>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.rg}" class="form-control" name="rg" id="rg"  p:placeholder="RG"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.cpf}" class="form-control" name="cpf" id="cpf"  p:placeholder="CPF"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.data_nascimento}" class="form-control" name="datanasc" id="datanasc"  p:placeholder="Data de Nascimento"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.endereco}" class="form-control" name="endereco" id="endereco"  p:placeholder="Endereço"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.cidade}" class="form-control" name="cidade" id="cidade"  p:placeholder="Cidade"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.telefone}" class="form-control" name="telefone" id="telefone"  p:placeholder="Telefone"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="cols-sm-10">
+					<h:inputText value="#{cadastroPacienteBean.paciente.numero_sus}" class="form-control" name="sus" id="sus"  p:placeholder="Numero do SUS"/>
+				</div>
+			</div>
+
+			<div class="form-group ">
+				<h:commandButton class="btn btn-primary btn-lg btn-block login-button" value="Registrar" action="#{cadastroPacienteBean.cadastrar}"/>
+			</div><br />
+			</h:form>
+		</div>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</h:body>
+</html>

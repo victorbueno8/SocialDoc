@@ -7,8 +7,6 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @DiscriminatorValue(value = "medico")
@@ -16,7 +14,7 @@ public class Medico extends Usuario {
 	private String crm;
 	private String especialidade;
 	@ElementCollection
-	private List<Calendar> periodoDisponivel = new ArrayList<Calendar>();
+	private List<String> periodoDisponivel = new ArrayList<String>();
 	
 	public String getCrm() {
 		return crm;
@@ -30,7 +28,7 @@ public class Medico extends Usuario {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
-	public List<Calendar> getPeriodoDisponivel() {
+	public List<String> getPeriodoDisponivel() {
 		return periodoDisponivel;
 	}
 }

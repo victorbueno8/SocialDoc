@@ -1,7 +1,6 @@
 package socialdoc.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -10,8 +9,6 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class Usuario {
 	@Id
-	@GeneratedValue
-	private long id;
 	private String usuario;
 	private String password;
 	private String nome;
@@ -21,12 +18,6 @@ public abstract class Usuario {
 	private String cidade;
 	private String telefone;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getUsuario() {
 		return usuario;
 	}
