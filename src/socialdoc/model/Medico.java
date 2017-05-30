@@ -1,9 +1,9 @@
 package socialdoc.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;

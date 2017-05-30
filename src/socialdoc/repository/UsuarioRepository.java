@@ -28,4 +28,17 @@ public class UsuarioRepository {
 			return false;
 		}
 	}
+	
+	public String getTipoUsuario(String usuario){
+		Query query = manager.createQuery("select c from Usuario c where c.usuario = ?1");
+		query.setParameter(1, usuario);
+		try {
+			return query.getSingleResult().getClass().getSimpleName();
+		} catch(NoResultException e) {
+			return null;
+		}
+		
+	}
+	
+	
 }

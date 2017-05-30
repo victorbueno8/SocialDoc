@@ -1,11 +1,8 @@
 package socialdoc.model;
 
-import java.util.Calendar;
-
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @DiscriminatorValue(value = "paciente")
