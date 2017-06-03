@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+	<title>Paciente Home Page</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/nav-colors.css"/>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-light" style="background-color: #ccddff;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">SocialDoc</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><h:form><h:commandLink action="#{autenticadorBean.registraSaida}">Sair</h:commandLink></h:form></li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</h:body>
+</html>

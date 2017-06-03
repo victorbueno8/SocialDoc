@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+	<title>Meus Dados</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/registrar.css"/>
+</h:head>
+<h:body>
+
+<h:form>
+	<nav class="navbar navbar-light" style="background-color: #ccddff;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="login.xhtml">SocialDoc</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><h:commandLink action="medico_home">Home</h:commandLink></li>
+          <li><h:commandLink action="medico_agendar">Agendar Paciente</h:commandLink></li>
+          <li><h:commandLink action="medico_consultas">Consultas</h:commandLink></li>
+          <li class="active"><h:commandLink action="medico_editar">Meus Dados</h:commandLink></li>
+          <li><h:commandLink  action="#{autenticadorBean.sair}">Sair</h:commandLink></li>
+        </ul>
+      </div>
+    </nav>
+</h:form>
+
+    <div class="container">
+		<div class="row main">
+			<div class="page-header">
+			<h1>Editar Médico</h1>
+			</div>
+			
+		<div class="jumbotron">
+			<h:form class="form-horizontal">
+				<label>Dados do Usuario</label>
+
+				<div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+								<h:inputText class="form-control" name="name" id="name" value="" p:placeholder="Nome Completo"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"> @ </span>
+								<h:inputText class="form-control" name="email" id="email" value=""  p:placeholder="Endereço de Email"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+								<input type="password" class="form-control" name="password" id="password" value="" p:placeholder="Senha"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+								<input type="password" class="form-control" name="confirm" id="confirm" value="123" p:placeholder="Confirmar Senha"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="cols-sm-10">
+						<hr />
+						<label>Dados Pessoais</label>
+					</div>
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="rg" id="rg" value="1234546732345" p:placeholder="RG"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="cpf" id="cpf" value="123412341243123" p:placeholder="CPF"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="datanasc" id="datanasc" value="07/06/1894" p:placeholder="Data de Nascimento"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="endereco" id="endereco" value="Alameida dos anjos 2017"  p:placeholder="Endereço"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="cidade" id="cidade" value="Rio de Janeiro"  p:placeholder="Cidade"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="telefone" id="telefone" value="40028922" p:placeholder="Telefone"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="cols-sm-10">
+							<h:inputText class="form-control" name="sus" id="sus" value="12309820341" p:placeholder="Numero do SUS"/>
+						</div>
+					</div>
+					<div class="form-group cols-sm-12">
+						<h:commandButton class="btn btn-primary btn-lg" value="Salvar"/>
+					</div>
+				</h:form>
+				</div>
+			</div>
+		</div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</h:body>
+</html>

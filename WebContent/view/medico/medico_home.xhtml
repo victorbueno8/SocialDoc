@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+	<title>Médico Home Page</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+</h:head>
+<h:body>
+<h:form>
+	<nav class="navbar navbar-light" style="background-color: #ccddff;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="login.xhtml">SocialDoc</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><h:commandLink action="medico_home">Home</h:commandLink></li>
+          <li><h:commandLink action="medico_agendar">Agendar Paciente</h:commandLink></li>
+          <li><h:commandLink action="medico_consultas">Consultas</h:commandLink></li>
+          <li><h:commandLink action="medico_editar">Meus Dados</h:commandLink></li>
+          <li><h:commandLink  action="#{autenticadorBean.sair}">Sair</h:commandLink></li>
+        </ul>
+      </div>
+    </nav>
+</h:form>
+
+      <div class="container">
+			<div class="row main">
+
+        <div class="page-header">
+					<h1>Consultas Hoje</h1>
+				</div>
+
+        <div class="col-lg-12">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>Paciente</th>
+                      <th>Data</th>
+                      <th>Periodo</th>
+                      <th>Descrição</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tr>
+                  <td>Denis</td>
+                  <td>10/11/2017</td>
+                  <td>10:10</td>
+                  <td>Revisão Geral</td>
+                  <td><a href="">Realizar Consulta</a></td>
+              </tr>
+
+          </table>
+          </div>
+
+		<div class="page-header">
+			<h1>Cadastrar datas</h1>
+		</div>
+		
+		<div class="col-lg-12">
+		<h:form>
+		<div class="cols-lg-9">
+			<h:inputText class="form-control" p:type="datetime-local" name="data" value="#{cadastrarPeriodoBean.periodo}" p:placeholder="dd/mm/yyyy HH:mm"/>
+		</div>
+		<div class="cols-lg-3">
+			<h:commandButton class="btn btn-primary" value="Inserir" action="#{cadastrarPeriodoBean.setHorasConsulta}"/>
+		</div>
+		</h:form>
+		</div>
+		
+		<h:form>
+		<ui:repeat var="periodo" value="#{cadastrarPeriodoBean.horasConsulta}">
+			#{periodo} <h:commandButton value="Remover" action="#{cadastrarPeriodoBean.removeHorasConsulta(periodo)}"/> <br/>
+		</ui:repeat>
+		</h:form>
+		
+      </div>
+    </div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</h:body>
+</html>
+
