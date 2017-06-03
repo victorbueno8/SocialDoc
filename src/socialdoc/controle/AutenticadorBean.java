@@ -43,11 +43,11 @@ public class AutenticadorBean {
 			session.setAttribute("usuario", usuario);
 			
 			if(repository.getTipoUsuario(usuario).equals("Paciente")){
-				return "/paciente_home";
+				return "view/paciente/paciente_home";
 			} else if (repository.getTipoUsuario(usuario).equals("Medico")){
-				return "/medico_home";
+				return "view/medico/medico_home";
 			} else {
-				return "/admin";
+				return "view/admin";
 			}
 			
 		} else {
@@ -65,7 +65,7 @@ public class AutenticadorBean {
 		HttpSession session = (HttpSession) ec.getSession(false);
 		session.removeAttribute("usuario");
 		
-		return "login";
+		return "/login.xhtml";
 	}
 	
 	private EntityManager getEntityManager() {
@@ -77,3 +77,5 @@ public class AutenticadorBean {
 	}
 	
 }
+
+

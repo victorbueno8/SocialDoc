@@ -1,6 +1,6 @@
 package socialdoc.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class Consulta {
 	@ManyToOne
 	private Paciente paciente;
 	@Temporal(TemporalType.DATE)
-	private Calendar data_consulta;
+	private Date data_consulta;
 	private String diagnostico;
 	private String observacoes;
 	
@@ -41,10 +41,10 @@ public class Consulta {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-	public Calendar getData_consulta() {
+	public Date getData_consulta() {
 		return data_consulta;
 	}
-	public void setData_consulta(Calendar data_consulta) {
+	public void setData_consulta(Date data_consulta) {
 		this.data_consulta = data_consulta;
 	}
 	public String getDiagnostico() {

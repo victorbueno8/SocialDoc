@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import socialdoc.model.Medico;
+import socialdoc.model.Paciente;
 import socialdoc.model.Usuario;
 
 public class UsuarioRepository {
@@ -15,6 +17,10 @@ public class UsuarioRepository {
 	
 	public void adiciona(Usuario usuario) {
 		manager.persist(usuario);
+	}
+	
+	public void atualiza(Usuario usuario){
+		manager.merge(usuario);
 	}
 	
 	public boolean verificaUsuario(String usuario, String password) {
@@ -37,8 +43,14 @@ public class UsuarioRepository {
 		} catch(NoResultException e) {
 			return null;
 		}
-		
 	}
 	
+	public Medico getMedico(String usuario) {
+		return manager.find(Medico.class, usuario);
+	}
+	
+	public Paciente getPaciente(String usuario) {
+		return manager.find(Paciente.class, usuario);
+	}
 	
 }
