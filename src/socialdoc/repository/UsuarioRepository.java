@@ -1,5 +1,7 @@
 package socialdoc.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -21,6 +23,10 @@ public class UsuarioRepository {
 	
 	public void atualiza(Usuario usuario){
 		manager.merge(usuario);
+	}
+	
+	public Usuario getUsuario(String usuario){
+		return (Usuario) manager.find(Usuario.class, usuario);
 	}
 	
 	public boolean verificaUsuario(String usuario, String password) {
@@ -49,8 +55,26 @@ public class UsuarioRepository {
 		return manager.find(Medico.class, usuario);
 	}
 	
+	public List<Medico> getMedicos() {
+		Query query = manager.createQuery("select c from Medico c",Medico.class);
+		try {
+			return query.getResultList();
+		} catch(NoResultException e) {
+			return null;
+		}
+	}
+	
 	public Paciente getPaciente(String usuario) {
 		return manager.find(Paciente.class, usuario);
+	}
+	
+	public List<Paciente> getPacientes() {
+		Query query = manager.createQuery("select c from Paciente c", Paciente.class);
+		try {
+			return query.getResultList();
+		} catch(NoResultException e) {
+			return null;
+		}
 	}
 	
 }

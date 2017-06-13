@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+	<title>Meus Dados</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/nav-colors.css"/>
+</h:head>
+<h:body>
+<h:form>
+	<nav class="navbar navbar-light" style="background-color: #ccddff;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h:commandLink action="paciente_home" class="navbar-brand">SocialDoc</h:commandLink>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><h:commandLink action="paciente_home">Home</h:commandLink></li>
+          <li><h:commandLink action="paciente_agendar">Agendar Paciente</h:commandLink></li>
+          <li><h:commandLink action="paciente_consultas">Consultas</h:commandLink></li>
+          <li><h:commandLink action="paciente_editar">Meus Dados</h:commandLink></li>
+          <li><h:commandLink  action="#{autenticadorBean.sair}">Sair</h:commandLink></li>
+        </ul>
+      </div>
+    </nav>
+</h:form>
+
+	<div class="container">
+			<div class="row main">
+				<div class="page-header">
+					<h1>Editar paciente</h1>
+				</div>
+				<div class="jumbotron">
+					<h:form class="form-horizontal">
+
+						<label>Dados do Usuario</label>
+						
+						<c:set var="usuario" value="#{autenticadorBean.dadosUsuario}"/>
+						
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<h:inputText class="form-control" name="name" id="name" value="#{usuario.nome}" p:placeholder="Nome Completo"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"> @ </span>
+									<h:inputText class="form-control" name="email" id="email" value="#{usuario.usuario}"  p:placeholder="Endereço de Email" disabled="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<h:inputSecret class="form-control" name="oldpassword" id="oldpassword" p:placeholder="Senha antiga"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<h:inputSecret class="form-control" name="password" id="password" p:placeholder="Senha"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<h:inputSecret class="form-control" name="confirm" id="confirm" p:placeholder="Confirmar Senha"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="cols-sm-10">
+							<hr />
+							<label>Dados Pessoais</label>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> RG </span>
+								<h:inputText class="form-control" name="rg" id="rg" value="#{usuario.rg}" p:placeholder="RG"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> CPF </span>
+								<h:inputText class="form-control" name="cpf" id="cpf" value="#{usuario.cpf}" p:placeholder="CPF"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> Data de Nascimento </span>
+								<h:inputText class="form-control" name="datanasc" id="datanasc" value="#{usuario.data_nascimento}" p:placeholder="Data de Nascimento"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> Endereço </span>
+								<h:inputText class="form-control" name="endereco" id="endereco" value="#{usuario.endereco}"  p:placeholder="Endereço"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> Cidade </span>
+								<h:inputText class="form-control" name="cidade" id="cidade" value="#{usuario.cidade}"  p:placeholder="Cidade"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> Telefone </span>
+								<h:inputText class="form-control" name="telefone" id="telefone" value="#{usuario.telefone}" p:placeholder="Telefone"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10"><div class="input-group">
+								<span class="input-group-addon"> Numero do SUS </span>
+								<h:inputText class="form-control" name="sus" id="sus" value="#{usuario.numero_sus}" p:placeholder="Numero do SUS"/>
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<h:commandButton class="btn btn-primary btn-lg btn-block login-button" value="Atualizar" action="#{cadastroPacienteBean.updatePaciente(usuario)}"/>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</h:body>
+</html>

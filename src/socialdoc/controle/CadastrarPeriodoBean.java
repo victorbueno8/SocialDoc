@@ -29,6 +29,7 @@ public class CadastrarPeriodoBean {
 	public void setPeriodo(String periodo) {
 		String[] s = periodo.split("-|T|\\:");
 		this.periodo = s[2]+"/"+s[1]+"/"+s[0]+" "+s[3]+":"+s[4];
+		//Formatando o HTML5 datetime-local output para o formato novo
 	}
 
 	public String setHorasConsulta() throws ParseException{

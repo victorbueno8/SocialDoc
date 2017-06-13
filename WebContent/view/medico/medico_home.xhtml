@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
@@ -18,10 +17,10 @@
 	<nav class="navbar navbar-light" style="background-color: #ccddff;">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="login.xhtml">SocialDoc</a>
+          <h:commandLink action="medico_home" class="navbar-brand">SocialDoc</h:commandLink>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><h:commandLink action="medico_home">Home</h:commandLink></li>
+          <li><h:commandLink action="medico_home">Home</h:commandLink></li>
           <li><h:commandLink action="medico_agendar">Agendar Paciente</h:commandLink></li>
           <li><h:commandLink action="medico_consultas">Consultas</h:commandLink></li>
           <li><h:commandLink action="medico_editar">Meus Dados</h:commandLink></li>

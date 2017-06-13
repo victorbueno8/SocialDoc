@@ -15,9 +15,9 @@ public class Consulta {
 	@GeneratedValue
 	private long id;
 	@ManyToOne
-	private Medico medico;
+	private Usuario medico;
 	@ManyToOne
-	private Paciente paciente;
+	private Usuario paciente;
 	@Temporal(TemporalType.DATE)
 	private Date data_consulta;
 	private String diagnostico;
@@ -29,16 +29,16 @@ public class Consulta {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Medico getMedico() {
+	public Usuario getMedico() {
 		return medico;
 	}
-	public void setMedico(Medico medico) {
+	public void setMedico(Usuario medico) {
 		this.medico = medico;
 	}
-	public Paciente getPaciente() {
+	public Usuario getPaciente() {
 		return paciente;
 	}
-	public void setPaciente(Paciente paciente) {
+	public void setPaciente(Usuario paciente) {
 		this.paciente = paciente;
 	}
 	public Date getData_consulta() {

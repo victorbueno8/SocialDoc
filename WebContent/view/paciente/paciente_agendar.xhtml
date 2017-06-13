@@ -2,80 +2,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
-	<title>Agendar Paciente</title>
+	<title>Buscar Médico</title>
 
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/nav-colors.css"/>
 </h:head>
 <h:body>
-
 <h:form>
 	<nav class="navbar navbar-light" style="background-color: #ccddff;">
       <div class="container-fluid">
         <div class="navbar-header">
-          <h:commandLink action="medico_home" class="navbar-brand">SocialDoc</h:commandLink>
+          <h:commandLink action="paciente_home" class="navbar-brand">SocialDoc</h:commandLink>
         </div>
         <ul class="nav navbar-nav">
-          <li><h:commandLink action="medico_home">Home</h:commandLink></li>
-          <li><h:commandLink action="medico_agendar">Agendar Paciente</h:commandLink></li>
-          <li><h:commandLink action="medico_consultas">Consultas</h:commandLink></li>
-          <li><h:commandLink action="medico_editar">Meus Dados</h:commandLink></li>
+          <li><h:commandLink action="paciente_home">Home</h:commandLink></li>
+          <li><h:commandLink action="paciente_agendar">Agendar Paciente</h:commandLink></li>
+          <li><h:commandLink action="paciente_consultas">Consultas</h:commandLink></li>
+          <li><h:commandLink action="paciente_editar">Meus Dados</h:commandLink></li>
           <li><h:commandLink  action="#{autenticadorBean.sair}">Sair</h:commandLink></li>
         </ul>
       </div>
     </nav>
 </h:form>
 
-    <div class="container">
-			<div class="row main">
-				<div class="page-header">
-					<h1>Buscar Paciente</h1>
-				</div>
+<div class="container">
+	<div class="row main">
+		<div class="page-header">
+			<h1>Buscar Atendimento</h1>
+		</div>
 
-        <h:form>
+     <h:form>
         <div class="col-lg-12">
         	<div class="input-group input-group-md">
-        		<h:inputText name="busca" id="busca" value="#{buscarUsuariosBean.busca}" class="form-control" p:placeholder="Selecione a sua pesquisa"/>
+        		<select name="pesquisa" class="input-group-addon form-control">
+        			<option value="medico">Médico</option>
+        			<option value="especialidade">Especialidade</option>
+        		</select>
+        		<span class="input-group-btn" style="width:0px;"></span>
+        		<h:inputText name="busca" class="form-control" p:placeholder="Selecione a sua pesquisa"/>
+        		
         		<span class="input-group-btn">
-        		<h:commandButton class="btn btn-primary" value="Buscar" action="#{buscarUsuariosBean.buscaPacientes}"/>
+        		<h:commandButton class="btn btn-primary" value="Buscar"/>
         		</span>
         	</div>
         </div>
         </h:form>
-        
+
         <div class="col-lg-12"><hr /></div>
 
         <div class="col-lg-12">
 		<h:form>
-<!-- 		<ui:repeat value="#{buscarUsuariosBean.resposta}" var="paciente"> -->
-<!-- 			#{paciente.cpf}		#{paciente.nome}		<h:commandButton value="Marcar consulta" action="medico_marcar"/> -->
-<!-- 		</ui:repeat> -->
-		
-        <h:dataTable value="#{cadastroPacienteBean.pacientes}" var="paciente" id="table" styleClass="table table-hover">
+        <h:dataTable value="#{cadastroMedicoBean.medicos}" var="medico" styleClass="table table-hover">
     		<h:column>
-    			<f:facet name="header">CPF</f:facet>
-    			<h:outputText value="#{paciente.cpf}" id="cpf"/>
+    			<f:facet name="header">Nome</f:facet>
+    			#{medico.nome}
    			</h:column>
 			<h:column>
-    			<f:facet name="header">Nome</f:facet>
-    			<h:outputText value="#{paciente.nome}" id="nome"/>
+    			<f:facet name="header">Especialidade</f:facet>
+    			#{medico.especialidade}
     		</h:column>
     		<h:column>
-    			<h:commandLink  value="Marcar consulta" action="#{marcarConsultaBean.medicoMarcar(paciente.usuario)}"/>
+    			<h:commandLink value="Marcar consulta" action="paciente_marcar"/>
     		</h:column>
     	</h:dataTable>
-
     	</h:form>
       </div>
 
    </div>
 </div>
+
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

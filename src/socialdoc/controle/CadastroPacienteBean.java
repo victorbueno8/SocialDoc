@@ -1,5 +1,7 @@
 package socialdoc.controle;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -8,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
 import socialdoc.model.Paciente;
+import socialdoc.model.Usuario;
 import socialdoc.repository.UsuarioRepository;
 
 @ManagedBean
@@ -40,7 +43,7 @@ public class CadastroPacienteBean {
 			fm.setSeverity(FacesMessage.SEVERITY_INFO);
 			fc.addMessage(null, fm);
 			
-			return "/login";
+			return "/index";
 		} else {
 			FacesMessage fm = new FacesMessage("Senhas não são iguais!");
 			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -48,6 +51,24 @@ public class CadastroPacienteBean {
 			
 			return "/registrar_paciente";
 		}
+	}
+	
+	public String updatePaciente(Usuario usuario){
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		repository.atualiza(usuario);
+		
+		
+		
+		return "paciente_editar";
+	}
+	
+	public List<Paciente> getPacientes(){
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		
+		
+		return repository.getPacientes();
 	}
 	
 	private EntityManager getEntityManager() {

@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width = device-width, initial-scale = 1"/>
-	<title>Paciente Home Page</title>
+	<title>Marcar Consulta</title>
 
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/nav-colors.css"/>
@@ -28,56 +28,44 @@
       </div>
     </nav>
 </h:form>
-      <div class="container">
-			<div class="row main">
 
-        <div class="page-header">
-					<h1>Consulta Hoje</h1>
-				</div>
+<div class="container">
+	<div class="row main">
+		<div class="page-header">
+			<h1>Marcar Consulta</h1>
+		</div>
 
+     <h:form>
         <div class="col-lg-12">
-                <h4>Nenhuma Consulta Marcada Hoje!</h4>
+          <div class="form-group">
+            <label for="medico">Médico:</label>
+            <h:inputText name="medico" class="form-control" id="medico" disabled="true"/>
           </div>
-
-        <div class="col-lg-12"><hr /></div>
-
-				<div class="page-header">
-					<h1>Médicos na Sua Cidade!</h1>
-				</div>
-
-        <div class="col-lg-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Médico</th>
-                            <th>Especialidade</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Andrew Oliveira</td>
-                        <td>Geral</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Victor Bueno</td>
-                        <td>Otorrinolaringologista</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Bruno Vinicius</td>
-                        <td>Ginecologista</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-                </table>
+          <div class="form-group">
+            <label for="espec">Especialidade:</label>
+            <h:inputText name="especialidade" class="form-control" id="espec" disabled="true"/>
           </div>
+          <div class="form-group">
+            <h:outputLabel for="data" value="Dias Disponíveis:"/>
+            <h:selectOneMenu name="diasDisp"  class="form-control" id="data">
+            </h:selectOneMenu>
+          </div>
+          <div class="form-group">
+            <h:outputLabel for="horas" value="Horas Disponíveis:"/>
+            <h:selectOneMenu name="diasDisp"  class="form-control" id="dias">
+            </h:selectOneMenu>
+          </div>
+          <div class="form-group">
+            <h:outputLabel  for="descricao" value="Descreva o objetivo da consulta:"/>
+            <h:inputTextarea name="descricao" class="form-control" id="descricao" cols="30" rows="10"/>
+          </div>
+          <h:commandButton value="Marcar Consulta" class="btn btn-primary"/>
+        </div>
+   </h:form>
 
-		
 
-      </div>
-    </div>
+  </div>
+</div>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

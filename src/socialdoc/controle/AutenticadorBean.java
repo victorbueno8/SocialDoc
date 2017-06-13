@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import socialdoc.model.Usuario;
 import socialdoc.repository.UsuarioRepository;
 
 @ManagedBean
@@ -54,9 +55,19 @@ public class AutenticadorBean {
 			FacesMessage fm = new FacesMessage("Email ou senha incorreto.");
 			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
 			fc.addMessage(null, fm);
-			return "/login";
+			return "/index";
 			
 		}
+	}
+	
+	public Usuario getDadosUsuario(){
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		String user = (String) session.getAttribute("usuario");
+		return repository.getUsuario(user);
 	}
 	
 	public String sair() throws IOException {
@@ -65,7 +76,7 @@ public class AutenticadorBean {
 		HttpSession session = (HttpSession) ec.getSession(false);
 		session.removeAttribute("usuario");
 		
-		return "/login.xhtml";
+		return "/index.xhtml";
 	}
 	
 	private EntityManager getEntityManager() {
