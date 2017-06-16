@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,17 +14,118 @@
 	<link rel="stylesheet" href="css/nav-colors.css"/>
 </h:head>
 <h:body>
+<h:form>
 	<nav class="navbar navbar-light" style="background-color: #ccddff;">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="index.html">SocialDoc</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><h:form><h:commandLink action="#{autenticadorBean.registraSaida}">Sair</h:commandLink></h:form></li>
+          <li><h:commandLink action="#{autenticadorBean.sair}">Sair</h:commandLink></li>
         </ul>
       </div>
     </nav>
+</h:form>
 
+<div class="container">
+
+<div><h:messages class="alert alert-danger"/></div><br/>
+
+<div class="col-lg-6">
+
+<div class="page-header">
+	<h2>Medicos</h2>
+</div>
+<h:form>
+		<h:dataTable var="medico" value="#{cadastroMedicoBean.medicos}" styleClass="table table-hover">
+			<h:column>
+    			<f:facet name="header">usuario</f:facet>
+    			<h:outputText value="#{medico.usuario}" id="usuario"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">nome</f:facet>
+    			<h:outputText value="#{medico.nome}" id="nome"/>
+    		</h:column>
+    		<h:column>
+    			<h:commandButton value="Remover" action="#{cadastroMedicoBean.removeMedico(medico)}"/>
+    		</h:column>
+		</h:dataTable>
+</h:form>
+
+</div>
+
+<div class="col-lg-6">
+
+<div class="page-header">
+	<h2>Pacientes</h2>
+</div>
+<h:form>
+		<h:dataTable var="paciente" value="#{cadastroPacienteBean.pacientes}" styleClass="table table-hover">
+			<h:column>
+    			<f:facet name="header">usuario</f:facet>
+    			<h:outputText value="#{paciente.usuario}" id="pusuario"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">nome</f:facet>
+    			<h:outputText value="#{paciente.nome}" id="pnome"/>
+    		</h:column>
+    		<h:column>
+    			<h:commandButton value="Remover" action="#{cadastroPacienteBean.removePaciente(paciente)}"/>
+    		</h:column>
+		</h:dataTable>
+</h:form>
+
+</div>
+
+<div class="col-lg-12">
+
+<div class="page-header">
+	<h2>Consultas</h2>
+</div>
+<h:form>
+		<h:dataTable var="consulta" value="#{marcarConsultaBean.consultas}" styleClass="table table-hover">
+			<h:column>
+    			<f:facet name="header">usuario</f:facet>
+    			<h:outputText value="#{consulta.id}" id="id"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">data/hora</f:facet>
+    			<h:outputText value="#{consulta.data_consulta}" id="consultadatahora">
+    				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+    			</h:outputText>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">medico</f:facet>
+    			<h:outputText value="#{consulta.medico.nome}" id="consultamedico"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">paciente</f:facet>
+    			<h:outputText value="#{consulta.paciente.nome}" id="consultapaciente"/>
+    		</h:column>
+    		<h:column>
+    			<h:commandButton value="Remover" action="#{marcarConsultaBean.removeConsulta(consulta)}"/>
+    		</h:column>
+		</h:dataTable>
+</h:form>
+
+</div>
+
+
+<div class="col-lg-6">
+
+<div class="page-header">
+	<h2>Usuario Administrador Configurações</h2>
+</div>
+<h:form>
+	<h:inputSecret name="oldSenha" value="#{adminBean.oldPassword}" class="form-control" p:placeholder="Senha Antiga"/><br />
+	<h:inputSecret name="newSenha" value="#{adminBean.password}" class="form-control" p:placeholder="Nova Senha"/><br />
+	<h:inputSecret name="confSenha" value="#{adminBean.passwordConfirm}" class="form-control" p:placeholder="Confirme Nova Senha"/><br />
+	<h:commandButton value="Mudar Senha" class="btn btn-primary" action="#{adminBean.changePassword}"/><br />
+</h:form>
+
+</div>
+
+</div>
 
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

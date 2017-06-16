@@ -53,11 +53,8 @@
 
         <div class="col-lg-12">
 		<h:form>
-<!-- 		<ui:repeat value="#{buscarUsuariosBean.resposta}" var="paciente"> -->
-<!-- 			#{paciente.cpf}		#{paciente.nome}		<h:commandButton value="Marcar consulta" action="medico_marcar"/> -->
-<!-- 		</ui:repeat> -->
 		
-        <h:dataTable value="#{cadastroPacienteBean.pacientes}" var="paciente" id="table" styleClass="table table-hover">
+        <h:dataTable value="#{buscarUsuariosBean.resposta}" var="paciente" id="table" styleClass="table table-hover">
     		<h:column>
     			<f:facet name="header">CPF</f:facet>
     			<h:outputText value="#{paciente.cpf}" id="cpf"/>

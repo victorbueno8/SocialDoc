@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -19,13 +22,15 @@ import socialdoc.repository.ConsultaRepository;
 import socialdoc.repository.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class MarcarConsultaBean {
 	private Usuario medico;
-	private List<String> dataDisp = new ArrayList<String>();
 	private Usuario paciente;
-	private String data_consulta;
+	private Date data_consulta;
 	private String diagnostico;
 	private String observacoes;
+	
+	private Consulta consultaComReceita;
 	
 	public String medicoMarcar(String paciente) {
 		AutenticadorBean autenticador = new AutenticadorBean();
@@ -35,13 +40,19 @@ public class MarcarConsultaBean {
 		return "medico_marcar";
 	}
 	
+	public String pacienteMarcar(String medico) {
+		AutenticadorBean autenticador = new AutenticadorBean();
+		this.setPaciente(autenticador.getDadosUsuario());
+		UsuarioRepository repository = new UsuarioRepository(getEntityManager());
+		this.setMedico(repository.getMedico(medico));
+		return "paciente_marcar";
+	}
+	
 	public String marcar() throws ParseException {
 		Consulta consulta = new Consulta();
 		consulta.setMedico(medico);
 		consulta.setPaciente(paciente);
-		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		System.out.println(data_consulta);
-		consulta.setData_consulta(formater.parse(data_consulta));
+		consulta.setData_consulta(data_consulta);
 		consulta.setObservacoes(observacoes);
 		
 		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
@@ -50,12 +61,93 @@ public class MarcarConsultaBean {
 		return "medico_consultas";
 	}
 	
+	public String p_marcar() throws ParseException {
+		Consulta consulta = new Consulta();
+		consulta.setMedico(medico);
+		consulta.setPaciente(paciente);
+		consulta.setData_consulta(data_consulta);
+		consulta.setObservacoes(observacoes);
+		
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		repository.adiciona(consulta);
+		
+		return "paciente_consultas";
+	}
+	
 	public List<Consulta> getMyConsultas() {
 		AutenticadorBean autenticador = new AutenticadorBean();
 		Usuario me = autenticador.getDadosUsuario();
 		
 		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
 		return repository.getConsultas(me.getUsuario());
+	}
+	
+	public List<Consulta> getMyConsultasWithPrescription() {
+		AutenticadorBean autenticador = new AutenticadorBean();
+		Usuario me = autenticador.getDadosUsuario();
+		
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		List<Consulta> consultas = new ArrayList<Consulta>();
+		for (Consulta consulta : repository.getConsultas(me.getUsuario())) {
+			if(consulta.getDiagnostico() != null){
+				consultas.add(consulta);
+			}
+		}
+		
+		return consultas;
+	}
+	
+	public List<Consulta> getMyConsultasWithoutPrescription() {
+		AutenticadorBean autenticador = new AutenticadorBean();
+		Usuario me = autenticador.getDadosUsuario();
+		
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		List<Consulta> consultas = new ArrayList<Consulta>();
+		for (Consulta consulta : repository.getConsultas(me.getUsuario())) {
+			if(consulta.getDiagnostico() == null){
+				consultas.add(consulta);
+			}
+		}
+		
+		return consultas;
+	}
+	
+	public List<Consulta> getTodayConsultas() {
+		AutenticadorBean autenticador = new AutenticadorBean();
+		Usuario me = autenticador.getDadosUsuario();
+		
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		List<Consulta> consultasHoje = new ArrayList<Consulta>();
+		for (Consulta c : repository.getConsultas(me.getUsuario())) {
+			if(c.getData_consulta().equals(new Date())) consultasHoje.add(c);
+		}
+		
+		return consultasHoje;
+	}
+	
+	public List<Consulta> getConsultas() {
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		return repository.getConsultas();
+	}
+	
+	public void removeConsulta(Consulta c) {
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		repository.remove(c);
+	}
+	
+	public String medicoReceitar(long id) {
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		this.setConsultaComReceita(repository.getConsulta(id));
+		return "medico_receita";
+	}
+	
+	public String receitar() throws ParseException {
+		consultaComReceita.setDiagnostico(diagnostico);
+		
+		ConsultaRepository repository = new ConsultaRepository(getEntityManager());
+		repository.atualiza(consultaComReceita);
+		
+		return "medico_consultas";
 	}
 	
 	private EntityManager getEntityManager() {
@@ -82,11 +174,11 @@ public class MarcarConsultaBean {
 		this.paciente = paciente;
 	}
 
-	public String getData_consulta() {
+	public Date getData_consulta() {
 		return data_consulta;
 	}
 
-	public void setData_consulta(String data_consulta) {
+	public void setData_consulta(Date data_consulta) {
 		this.data_consulta = data_consulta;
 	}
 
@@ -117,12 +209,12 @@ public class MarcarConsultaBean {
 		return str;
 	}
 
-	public List<String> getDataDisp() {
-		return dataDisp;
+	public Consulta getConsultaComReceita() {
+		return consultaComReceita;
 	}
 
-	public void setDataDisp(List<String> dataDisp) {
-		this.dataDisp = dataDisp;
+	public void setConsultaComReceita(Consulta consultaComReceita) {
+		this.consultaComReceita = consultaComReceita;
 	}
 
 }

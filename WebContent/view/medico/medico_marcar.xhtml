@@ -52,13 +52,17 @@
             <h:inputText name="paciente" class="form-control" id="paciente" value="#{marcarConsultaBean.paciente.nome}" disabled="true"/>
           </div>
           <div class="form-group">
-            <h:outputLabel for="data" value="Dias Disponíveis:"/>
-            <h:selectOneMenu name="diasDisp" class="form-control" id="data">
-<!--             	<f:selectItem itemValue="" itemLabel="Selecione a data/hora da consulta"/>  -->
-        
-                <f:selectItems value="#{marcarConsultaBean.medicoDataDisp}"/>
-                
+            <h:outputLabel for="dias" value="Dias Disponíveis:"/>
+            <h:selectOneMenu name="diasDisp" class="form-control" id="dias" value="#{marcarConsultaBean.data_consulta}">
+            	<f:selectItem itemValue="" itemLabel="Selecione a data/hora da consulta"/> 
+                <f:selectItems value="#{marcarConsultaBean.medico.periodoDisponivel}" var="periodo" itemLabel="#{periodo}" itemValue="#{periodo}" />
+                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>	
             </h:selectOneMenu>
+
+<!-- 					<h:inputText name="dias" class="form-control" id="dias" value="#{marcarConsultaBean.data_consulta}"> -->
+<!--                 		<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/> -->
+<!--                 	</h:inputText> -->
+				
           </div>
 <!--           <div class="form-group"> -->
 <!--             <h:outputLabel for="horas" value="Horas Disponíveis:"/> -->

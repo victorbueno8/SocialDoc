@@ -7,7 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import socialdoc.model.Consulta;
-import socialdoc.model.Medico;
+import socialdoc.model.Usuario;
 
 public class ConsultaRepository {
 	private EntityManager manager;
@@ -24,8 +24,21 @@ public class ConsultaRepository {
 		manager.merge(consulta);
 	}
 	
+	public void remove(Consulta consulta){
+		manager.remove(manager.merge(consulta));
+	}
+	
 	public Consulta getConsulta(long id) {
 		return (Consulta) manager.find(Consulta.class, id);
+	}
+	
+	public List<Consulta> getConsultas() {
+		Query query = manager.createQuery("select c from Consulta c",Consulta.class);
+		try {
+			return query.getResultList();
+		} catch(NoResultException e) {
+			return null;
+		}
 	}
 	
 	public List<Consulta> getConsultas(String usuario) {

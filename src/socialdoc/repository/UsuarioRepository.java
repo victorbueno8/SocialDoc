@@ -25,6 +25,10 @@ public class UsuarioRepository {
 		manager.merge(usuario);
 	}
 	
+	public void remove(Usuario usuario){
+		manager.remove(manager.merge(usuario));
+	}
+	
 	public Usuario getUsuario(String usuario){
 		return (Usuario) manager.find(Usuario.class, usuario);
 	}

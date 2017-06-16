@@ -35,9 +35,12 @@ public class AutenticadorBean {
 	public String autentica() throws IOException {
 		EntityManager manager = getEntityManager();
 		UsuarioRepository repository = new UsuarioRepository(manager);
+		AdminBean adminBean = new AdminBean();
 		
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
+		
+		adminBean.checkAdminExists();
 		
 		if(repository.verificaUsuario(usuario, password)) {
 			HttpSession session = (HttpSession) ec.getSession(true);
@@ -48,8 +51,17 @@ public class AutenticadorBean {
 			} else if (repository.getTipoUsuario(usuario).equals("Medico")){
 				return "view/medico/medico_home";
 			} else {
-				return "view/admin";
+				FacesMessage fm = new FacesMessage("Erro na verificação das suas credenciais.");
+				fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+				fc.addMessage(null, fm);
+				return "/index";
 			}
+			
+		} else if(usuario.equals("admin") && adminBean.checkPassword(password)) {
+			HttpSession session = (HttpSession) ec.getSession(true);
+			session.setAttribute("usuario", usuario);
+			
+			return "view/admin";
 			
 		} else {
 			FacesMessage fm = new FacesMessage("Email ou senha incorreto.");
@@ -75,7 +87,7 @@ public class AutenticadorBean {
 		ExternalContext ec = fc.getExternalContext();
 		HttpSession session = (HttpSession) ec.getSession(false);
 		session.removeAttribute("usuario");
-		
+		session.invalidate();
 		return "/index.xhtml";
 	}
 	

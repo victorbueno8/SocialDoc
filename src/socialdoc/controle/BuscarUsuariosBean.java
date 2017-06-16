@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -15,10 +16,11 @@ import socialdoc.model.Usuario;
 import socialdoc.repository.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class BuscarUsuariosBean {
 	private String busca;
 	private String tipo;
-	private List<Usuario> resposta = new ArrayList<Usuario>();
+	private List<Usuario> resposta;
 	
 	public String getBusca() {
 		return busca;
@@ -26,10 +28,6 @@ public class BuscarUsuariosBean {
 
 	public void setBusca(String busca) {
 		this.busca = busca;
-	}
-	
-	public String teste(){
-		return "teste";
 	}
 	
 	public String getTipo() {
@@ -51,6 +49,7 @@ public class BuscarUsuariosBean {
 	public String buscaPacientes(){
 		EntityManager manager = getEntityManager();
 		UsuarioRepository repository = new UsuarioRepository(manager);
+		resposta = new ArrayList<Usuario>();
 		
 		for (Paciente paciente : repository.getPacientes()) {
 			if(paciente.getNome().contains(busca)) this.resposta.add(paciente);
@@ -67,7 +66,7 @@ public class BuscarUsuariosBean {
 	public String buscaMedico(){
 		EntityManager manager = getEntityManager();
 		UsuarioRepository repository = new UsuarioRepository(manager);
-		
+		resposta = new ArrayList<Usuario>();
 		for (Medico medico : repository.getMedicos()) {
 			if(tipo.equalsIgnoreCase("medico") && medico.getNome().contains(busca)) 
 				this.resposta.add(medico);

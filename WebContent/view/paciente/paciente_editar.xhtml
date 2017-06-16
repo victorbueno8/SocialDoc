@@ -36,6 +36,7 @@
 				<div class="page-header">
 					<h1>Editar paciente</h1>
 				</div>
+				<div><h:messages class="alert alert-danger"/></div>
 				<div class="jumbotron">
 					<h:form class="form-horizontal">
 
@@ -65,7 +66,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-									<h:inputSecret class="form-control" name="oldpassword" id="oldpassword" p:placeholder="Senha antiga"/>
+									<h:inputSecret class="form-control" name="oldpassword" id="oldpassword" value="#{cadastroPacienteBean.oldPassword}" p:placeholder="Senha antiga"/>
 								</div>
 							</div>
 						</div>
@@ -74,7 +75,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-									<h:inputSecret class="form-control" name="password" id="password" p:placeholder="Senha"/>
+									<h:inputSecret class="form-control" name="password" id="password" value="#{cadastroPacienteBean.newPassword}" p:placeholder="Nova Senha"/>
 								</div>
 							</div>
 						</div>
@@ -83,7 +84,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-									<h:inputSecret class="form-control" name="confirm" id="confirm" p:placeholder="Confirmar Senha"/>
+									<h:inputSecret class="form-control" name="confirm" id="confirm" value="#{cadastroPacienteBean.confirmPass}" p:placeholder="Confirmar Senha"/>
 								</div>
 							</div>
 						</div>

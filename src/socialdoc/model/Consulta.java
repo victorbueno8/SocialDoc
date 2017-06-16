@@ -18,7 +18,7 @@ public class Consulta {
 	private Usuario medico;
 	@ManyToOne
 	private Usuario paciente;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_consulta;
 	private String diagnostico;
 	private String observacoes;

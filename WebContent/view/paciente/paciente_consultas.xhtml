@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -29,7 +30,66 @@
     </nav>
 </h:form>
 
-      
+<div class="container">
+		<div class="row main">
+
+        <div class="page-header">
+					<h1>Consultas com Receitas</h1>
+				</div>
+
+        <h:form>
+        <h:dataTable value="#{marcarConsultaBean.myConsultasWithPrescription}" var="consulta" id="table" styleClass="table table-hover">
+    		<h:column>
+    			<f:facet name="header">Id</f:facet>
+    			<h:outputText value="#{consulta.id}" id="id"/>
+   			</h:column>
+			<h:column>
+    			<f:facet name="header">Medico</f:facet>
+    			<h:outputText value="#{consulta.medico.nome}" id="medico"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Data</f:facet>
+    			<h:outputText value="#{consulta.data_consulta}" id="paciente">
+    				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>	
+    			</h:outputText>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Receita</f:facet>
+    			<h:outputText value="#{consulta.diagnostico}" id="descricao"/>
+    		</h:column>
+    	</h:dataTable>
+</h:form>
+
+
+        <div class="page-header">
+					<h1>Todas Consultas</h1>
+				</div>
+
+        <h:form>
+        <h:dataTable value="#{marcarConsultaBean.myConsultas}" var="consulta" id="table" styleClass="table table-hover">
+    		<h:column>
+    			<f:facet name="header">Id</f:facet>
+    			<h:outputText value="#{consulta.id}" id="id"/>
+   			</h:column>
+			<h:column>
+    			<f:facet name="header">Medico</f:facet>
+    			<h:outputText value="#{consulta.medico.nome}" id="medico"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Data</f:facet>
+    			<h:outputText value="#{consulta.data_consulta}" id="paciente">
+    				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>	
+    			</h:outputText>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Descrição</f:facet>
+    			<h:outputText value="#{consulta.observacoes}" id="descricao"/>
+    		</h:column>
+    	</h:dataTable>
+</h:form>
+
+      </div>
+    </div>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

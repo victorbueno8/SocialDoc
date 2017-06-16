@@ -17,6 +17,9 @@ import socialdoc.repository.UsuarioRepository;
 public class CadastroPacienteBean {
 	private Paciente paciente = new Paciente();
 	private String confirmPass;
+	private String oldPassword;
+	private String newPassword;
+	
 	
 	public Paciente getPaciente() {
 		return paciente;
@@ -56,11 +59,32 @@ public class CadastroPacienteBean {
 	public String updatePaciente(Usuario usuario){
 		EntityManager manager = getEntityManager();
 		UsuarioRepository repository = new UsuarioRepository(manager);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		if(!newPassword.isEmpty()){
+			if(oldPassword.equals(usuario.getPassword()) && confirmPass.equals(newPassword)){
+				usuario.setPassword(newPassword);
+			} else {
+				FacesMessage fm = new FacesMessage("Senhas não conferem!");
+				fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+				fc.addMessage(null, fm);
+				return "/medico_editar";
+			}
+		}
+		
 		repository.atualiza(usuario);
 		
 		
 		
 		return "paciente_editar";
+	}
+	
+	public String removePaciente(Usuario usuario){
+		EntityManager manager = getEntityManager();
+		UsuarioRepository repository = new UsuarioRepository(manager);
+		repository.remove(usuario);
+		
+		return "admin";
 	}
 	
 	public List<Paciente> getPacientes(){
@@ -77,5 +101,18 @@ public class CadastroPacienteBean {
 		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
 		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
 		return manager;
+	}
+	
+	public String getOldPassword() {
+		return oldPassword;
+	}
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 }

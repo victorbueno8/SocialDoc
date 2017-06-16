@@ -35,83 +35,49 @@
 				<div class="page-header">
 					<h1>Minhas Consultas Marcadas</h1>
 				</div>
-
-        <h:dataTable value="#{marcarConsultaBean.myConsultas}" var="consulta" id="table" styleClass="table table-hover">
+<h:form>
+        <h:dataTable value="#{marcarConsultaBean.myConsultasWithoutPrescription}" var="consulta" id="table" styleClass="table table-hover">
     		<h:column>
     			<f:facet name="header">Id</f:facet>
     			<h:outputText value="#{consulta.id}" id="id"/>
    			</h:column>
 			<h:column>
-    			<f:facet name="header">Medico</f:facet>
-    			<h:outputText value="#{consulta.medico.nome}" id="medico"/>
+    			<f:facet name="header">Data/Hora</f:facet>
+    			<h:outputText value="#{consulta.data_consulta}" id="medico">
+    				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+    			</h:outputText>
     		</h:column>
     		<h:column>
     			<f:facet name="header">Paciente</f:facet>
     			<h:outputText value="#{consulta.paciente.nome}" id="paciente"/>
     		</h:column>
     		<h:column>
-    			<h:commandLink  value="Gerar Receita"/>
+    			<h:commandLink  value="Gerar Receita" action="#{marcarConsultaBean.medicoReceitar(consulta.id)}"/>
     		</h:column>
     	</h:dataTable>
+</h:form>
+		
+		<div class="page-header">
+			<h1>Minhas Receitas e Diagnósticos</h1>
+		</div>
 
-					<div class="page-header">
-						<h1>Receitas</h1>
-					</div>
+	  <h:form>
+        <h:dataTable value="#{marcarConsultaBean.myConsultasWithPrescription}" var="consulta" id="tablerec" styleClass="table table-hover">
+    		<h:column>
+    			<f:facet name="header">Id</f:facet>
+    			<h:outputText value="#{consulta.id}" id="id"/>
+   			</h:column>
+    		<h:column>
+    			<f:facet name="header">Paciente</f:facet>
+    			<h:outputText value="#{consulta.paciente.nome}" id="paciente"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Paciente</f:facet>
+    			<h:outputText value="#{consulta.diagnostico}" id="diagnostico"/>
+    		</h:column>
+    	</h:dataTable>
+	</h:form>
 
-	        <div class="col-lg-12">
-	                <table class="table table-hover">
-	                    <thead>
-	                        <tr>
-	                            <th>Paciente</th>
-	                            <th>Data</th>
-	                            <th>Hora</th>
-	                            <th>Receita</th>
-	                            <th></th>
-	                        </tr>
-	                    </thead>
-	                    <tr>
-	                        <td>Denis</td>
-	                        <td>10/11/2017</td>
-	                        <td>10:10</td>
-	                        <td>Revisão Geral</td>
-	                        <td><a href="#">Imprimir</a></td>
-	                    </tr>
-
-	                </table>
-	          </div>
-
-          <div class="page-header">
-  					<h1>Histórico de Consultas</h1>
-  				</div>
-
-          <div class="col-lg-12">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr>
-                              <th>Paciente</th>
-                              <th>Data</th>
-                              <th>Data de Retorno (opcional)</th>
-                              <th>Prescrição Médica</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                            <td>Denis</td>
-                            <td>1/11/2017</td>
-                            <td>10/11/2018</td>
-                            <td>Tudo Certo</td>
-                        </tr>
-
-                        <tr>
-                            <td>João</td>
-                            <td>5/11/2017</td>
-                            <td>5/11/2018</td>
-                            <td>Fazer Raio X</td>
-                        </tr>
-                      </tbody>
-
-                  </table>
-            </div>
 
       </div>
     </div>

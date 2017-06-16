@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -28,53 +29,37 @@
       </div>
     </nav>
 </h:form>
-      <div class="container">
-			<div class="row main">
+   <div class="container">
+		<div class="row main">
 
         <div class="page-header">
-					<h1>Consulta Hoje</h1>
+					<h1>Consultas Marcadas</h1>
 				</div>
 
-        <div class="col-lg-12">
-                <h4>Nenhuma Consulta Marcada Hoje!</h4>
-          </div>
+        <h:form>
+        <h:dataTable value="#{marcarConsultaBean.myConsultasWithoutPrescription}" var="consulta" id="table" styleClass="table table-hover">
+    		<h:column>
+    			<f:facet name="header">Id</f:facet>
+    			<h:outputText value="#{consulta.id}" id="id"/>
+   			</h:column>
+			<h:column>
+    			<f:facet name="header">Medico</f:facet>
+    			<h:outputText value="#{consulta.medico.nome}" id="medico"/>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Data</f:facet>
+    			<h:outputText value="#{consulta.data_consulta}" id="paciente">
+    				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>	
+    			</h:outputText>
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Observações</f:facet>
+    			<h:outputText value="#{consulta.observacoes}" id="obs" />
+    		</h:column>
+    	</h:dataTable>
+</h:form>
 
-        <div class="col-lg-12"><hr /></div>
-
-				<div class="page-header">
-					<h1>Médicos na Sua Cidade!</h1>
-				</div>
-
-        <div class="col-lg-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Médico</th>
-                            <th>Especialidade</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Andrew Oliveira</td>
-                        <td>Geral</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Victor Bueno</td>
-                        <td>Otorrinolaringologista</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Bruno Vinicius</td>
-                        <td>Ginecologista</td>
-                        <td><a href="paciente_marcar.html">Marcar</a></td>
-                    </tr>
-                </table>
-          </div>
-
-		
+        
 
       </div>
     </div>
